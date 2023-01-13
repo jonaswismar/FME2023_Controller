@@ -53,7 +53,7 @@ void sendAlarm(boolean isDigital, int sound, int type, String adress, String com
   nodeIdString.toCharArray(char_array, str_len);
   unsigned long int nodeId = strtoul(char_array, &end, 10);
 
-  Serial.println(msg);
+  //Serial.println(msg);
     mesh.sendBroadcast(msg);
 }
 void sendCommand(String command, int nodeId)
@@ -244,7 +244,7 @@ xhttp.send();
 <p><label class="field" for="isDigital">FME Digital:</label>
 <input class="layout" type="checkbox" id="isDigital" name="isDigital" checked/></p>
 <p><label class="field" id="toneDigitalLabel" for="toneDigital">Digital Ton:</label>
-<input class="layout" type="number" id="toneDigital" name="toneDigital" min="1" max="54" value="12"/></p>
+<input class="layout" type="number" id="toneDigital" name="toneDigital" min="1" max="54" value="16"/></p>
 <p><label class="field" id="toneAnalogLabel" for="toneAnalog">Analog Ton:</label>
 <input class="layout" type="number" id="toneAnalog" name="toneAnalog" min="10000" max="99999" value="52112"/></p>
 <input type="hidden" id="nodeId" name="nodeId" value="0"/>
