@@ -37,6 +37,8 @@ void sendAlarm(boolean isDigital, int sound, int type, String adress, String com
   }
   StaticJsonDocument<256> doc;
   String msg;
+  unsigned int messageType = 1;
+  doc["message"] = messageType;
   doc["digital"] = isDigital;
   doc["sound"] = sound;
   doc["type"] = type;
@@ -51,14 +53,8 @@ void sendAlarm(boolean isDigital, int sound, int type, String adress, String com
   nodeIdString.toCharArray(char_array, str_len);
   unsigned long int nodeId = strtoul(char_array, &end, 10);
 
-  if (nodeId > 0)
-  {
-    mesh.sendSingle(nodeId, msg);
-  }
-  else
-  {
+  Serial.println(msg);
     mesh.sendBroadcast(msg);
-  }
 }
 void sendCommand(String command, int nodeId)
 {
@@ -71,6 +67,8 @@ void sendCommand(String command, int nodeId)
   }
   StaticJsonDocument<256> doc;
   String msg;
+  unsigned int messageType = 3;
+  doc["message"] = messageType;
   doc["cmd"] = command;
   doc["from"] = mesh.getNodeId();
   serializeJson(doc, msg);
