@@ -1281,7 +1281,7 @@ xhttp.send();
 <legend>Sonstiges</legend>
 <p><label class="field" for="currentComment">Kommentar:</label><input class="layout" type='text' id='currentComment' name='currentComment'/></p>
 </fieldset>
-<p><input type="submit" value="Alarmieren"></p><p><button type="button" onclick="saveAlarmToCard()">Karte Speichern</button></p><p><button type="button" onclick="loadAlarmFromCard()">Karte Alarmieren</button></p>
+<p><input type="submit" value="Alarmieren"><button type="button" onclick="saveAlarmToCard()">Karte Speichern</button><button type="button" onclick="loadAlarmFromCard()">Karte Alarmieren</button></p>
 </form>
 </div>
 <div id="EinstellungenD" class="tabcontent">

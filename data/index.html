@@ -107,6 +107,27 @@ setTimeout(loadFMEList, 10000);
 })()
 </script>
 <script>
+function saveAlarmToCard(){
+var currentType = document.getElementById('currentType').value;
+var currentSub = document.getElementById('currentSub').value;
+var currentPLZ = document.getElementById('currentPLZ').value;
+var currentCity = document.getElementById('currentCity').value;
+var currentStreet = document.getElementById('currentStreet').value;
+var currentHouseNumber = document.getElementById('currentHouseNumber').value;
+var currentHouseAdddition = document.getElementById('currentHouseAdddition').value;
+var currentAddress = document.getElementById('currentAddress').value;
+var currentComment = document.getElementById('currentComment').value;
+var link = 'http://controller/saveAlarm?currentType=' + currentType + 'currentSub=' + currentSub + 'currentPLZ=' + currentPLZ + 'currentCity=' + currentCity + 'currentStreet=' + currentStreet + 'currentHouseNumber=' + currentHouseNumber + 'currentHouseAddition=' + currentHouseAddition + '&currentAddress=' + currentAddress + '&currentComment=' + currentComment + '&nodeId=' + nodeId;
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function(){
+if (this.readyState == 4 && this.status == 200){
+}
+};
+xhttp.open("GET", link, true);
+xhttp.send();
+}
+</script>
+<script>
 function sendAlarm(){
 var currentType = document.getElementById('currentType').value;
 var currentSub = document.getElementById('currentSub').value;
@@ -1257,7 +1278,7 @@ xhttp.send();
 <legend>Sonstiges</legend>
 <p><label class="field" for="currentComment">Kommentar:</label><input class="layout" type='text' id='currentComment' name='currentComment'/></p>
 </fieldset>
-<p><input type="submit" value="Alarmieren"></p>
+<p><input type="submit" value="Alarmieren"><button type="button" onclick="saveAlarmToCard()">Karte Speichern</button><button type="button" onclick="loadAlarmFromCard()">Karte Alarmieren</button></p>
 </form>
 </div>
 <div id="EinstellungenD" class="tabcontent">

@@ -1,11 +1,13 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <AsyncTCP.h>
+#include <ESP32Time.h>
 #include <ESPAsyncWebServer.h>
 #include <IPAddress.h>
 #include <MFRC522.h>
 #include <painlessMesh.h>
 #include <SPI.h>
+#include <time.h>
 
 #include "alarm\functions.h"
 #include "filesystem\functions.h"
@@ -19,12 +21,13 @@
 
 #define STATION_SSID "HighSecurity"
 #define STATION_PASSWORD "1337leet"
-#define STATION_PORT 5555
+#define STATION_PORT 80
+uint8_t STATION_IP[4] = {192, 168, 1, 112};
 
 #define HOSTNAME "controller"
 
-#define RFID_RST_PIN 5
-#define RFID_SS_PIN 53
+#define RFID_RST_PIN 3
+#define RFID_SS_PIN 10
 
 MFRC522 mfrc522(RFID_SS_PIN, RFID_RST_PIN);
 
@@ -34,8 +37,8 @@ IPAddress myIP(0, 0, 0, 0);
 IPAddress myAPIP(0, 0, 0, 0);
 
 /*
-*Einstellungen Controller
-*/
+ *Einstellungen Controller
+ */
 boolean spiffs_active = true;
 boolean littlefs_active = false;
 
@@ -82,7 +85,15 @@ String save_nodeIdString = "";
  */
 String rfid_lastUID = "";
 
-void cleanAlarm()
+/*
+ * Zeit  Zeugs
+ */
+const char *ntpServer = "pool.ntp.org";
+const long gmtOffset_sec = 0;
+const int daylightOffset_sec = 3600;
+ESP32Time rtc(daylightOffset_sec);
+
+void cleanCurrentAlarm()
 {
   alarm_plz = 0;
   alarm_city = 0;
@@ -167,7 +178,19 @@ void sendAlarm(int type, int sub, int plz, int city, int street, int number, Str
   }
 }
 
-
+void resetAlarm()
+{
+  save_type = 0;
+  save_sub = 0;
+  save_plz = 0;
+  save_city = 0;
+  save_street = 0;
+  save_number = 0;
+  save_addition = "";
+  save_adress = "";
+  save_comment = "";
+  save_nodeIdString = "";
+}
 void saveAlarm(int type, int sub, int plz, int city, int street, int number, String addition, String adress, String comment, String nodeIdString)
 {
   save_type = type;
@@ -185,15 +208,19 @@ void saveAlarm(int type, int sub, int plz, int city, int street, int number, Str
   save_comment = comment;
   save_nodeIdString = nodeIdString;
   writeAlarm();
+  resetAlarm();
 }
 
 void readAndSendAlarm()
 {
+  resetAlarm();
   readAlarm();
-  sendAlarm(save_type, save_sub, save_plz, save_city, save_street, save_number, save_addition, save_adress, save_comment, save_nodeIdString);
+  if (save_type > 0 && save_plz > 0 && save_city > 0 && save_street > 0)
+  {
+    sendAlarm(save_type, save_sub, save_plz, save_city, save_street, save_number, save_addition, save_adress, save_comment, save_nodeIdString);
+  }
+  resetAlarm();
 }
-
-
 
 void sendCommand(String command, String nodeIdString)
 {
@@ -262,6 +289,7 @@ void setup()
 
   SPI.begin();
   mfrc522.PCD_Init();
+  // mesh.setDebugMsgTypes( ERROR | STARTUP |MESH_STATUS | CONNECTION | SYNC | COMMUNICATION | GENERAL | MSG_TYPES | REMOTE ); // all types on
   mesh.setDebugMsgTypes(ERROR | STARTUP | CONNECTION); // set before init() so that you can see startup messages
 
   // Channel set to 6. Make sure to use the same channel for your mesh and for you other
@@ -269,7 +297,7 @@ void setup()
   mesh.init(MESH_PREFIX, MESH_PASSWORD, MESH_PORT, WIFI_AP_STA, 6);
   mesh.onReceive(&receivedCallback);
 
-  mesh.stationManual(STATION_SSID, STATION_PASSWORD);
+  mesh.stationManual(STATION_SSID, STATION_PASSWORD, STATION_PORT, STATION_IP);
   mesh.setHostname(HOSTNAME);
 
   // Bridge node, should (in most cases) be a root node. See [the wiki](https://gitlab.com/painlessMesh/painlessMesh/wikis/Possible-challenges-in-mesh-formation) for some background
@@ -357,6 +385,13 @@ void setup()
     } });
 
   server.begin();
+
+  struct tm timeinfo;
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+  if (getLocalTime(&timeinfo))
+  {
+    rtc.setTimeStruct(timeinfo);
+  }
 }
 
 void loop()
