@@ -58,26 +58,32 @@ select.layout{
 width: 300px;
 float: left;
 }
-table{
-border: 3px solid #000000;
+table.grayTable {
+border: 1px solid #444444;
+background-color: #F8F8F8;
+width: 100%;
 border-collapse: collapse;
 }
-table td, table th{
-border: 1px solid #000000;
-padding: 5px 4px;
+table.grayTable td, table.grayTable th {
+border: 1px solid #CCCCCC;
+padding: 3px 2px;
 }
-table tr:nth-child(even){
-background: #F5F5F5;
+table.grayTable tr:nth-child(even) {
+background: #FFFFFF;
 }
-table thead{
-background: #CFCFCF;
-border-bottom: 3px solid #000000;
+table.grayTable thead {
+background: #DDDDDD;
+background: -moz-linear-gradient(top, #e5e5e5 0%, #e0e0e0 66%, #DDDDDD 100%);
+background: -webkit-linear-gradient(top, #e5e5e5 0%, #e0e0e0 66%, #DDDDDD 100%);
+background: linear-gradient(to bottom, #e5e5e5 0%, #e0e0e0 66%, #DDDDDD 100%);
+border-bottom: 2px solid #444444;
 }
-table thead th{
-font-weight: bold;
+table.grayTable thead th {
+font-weight: normal;
+border-left: 2px solid #444444;
 }
-table tfoot td{
-font-size: 14px;
+table.grayTable thead th:first-child {
+border-left: none;
 }
 </style>
 <script>
@@ -160,7 +166,7 @@ xhttp.send();
 <button class="tablinks" onclick="openTab(event, 'SonstigesD')">Sonstiges</button>
 </div>
 <div id="StatusD" class="tabcontent">
-<table>
+<table class="grayTable">
 <thead>
 <tr>
 <th>ID</th>

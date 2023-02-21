@@ -262,12 +262,12 @@ void notFound(AsyncWebServerRequest *request)
 
 String getNodeTable()
 {
-  String tableCode = "<tr><td>" + String(mesh.getNodeId()) + "</td><td>Controller</td><td>Online</td><td><button type=\"button\" onclick=\"resetFME(" + String(mesh.getNodeId()) + ")\">Reset</button><button type=\"button\" disabled>Alarmieren</button></td></tr>";
+  String tableCode = "<tr><td>" + String(mesh.getNodeId()) + "</td><td>Controller</td><td>Online</td><td><button type=\"button\" onclick=\"resetFME(" + String(mesh.getNodeId()) + ")\">Neustart</button><button type=\"button\" disabled>Alarmieren</button></td></tr>";
   SimpleList<uint32_t> nodes = mesh.getNodeList();
   SimpleList<uint32_t>::iterator node = nodes.begin();
   while (node != nodes.end())
   {
-    tableCode = tableCode + "<tr><td>" + String(*node) + "</td><td>Client</td><td>Online</td><td><button type=\"button\" onclick=\"resetFME(" + String(*node) + ")\">Reset</button><button type=\"button\" onclick=\"sendSingle(" + String(*node) + ")\">Alarmieren</button></td></tr>";
+    tableCode = tableCode + "<tr><td>" + String(*node) + "</td><td>Client</td><td>Online</td><td><button type=\"button\" onclick=\"resetFME(" + String(*node) + ")\">Neustart</button><button type=\"button\" onclick=\"sendSingle(" + String(*node) + ")\">Alarmieren</button></td></tr>";
     node++;
   }
   return tableCode;
