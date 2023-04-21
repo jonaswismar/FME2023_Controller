@@ -4651,3 +4651,70 @@ String getAlarmTypeText(unsigned int currentType)
      }
      return currentAlarmText;
 }
+
+String getAlarmCategoryText(unsigned int currentType)
+{
+     String currentAlarmText = "";
+     if (currentType >= 101 && currentType <= 199)
+     {
+          currentAlarmText = "Feuer";
+     }
+     else if (currentType >= 201 && currentType <= 299)
+     {
+          currentAlarmText = "Technische Hilfeleistung";
+     }
+     else if (currentType >= 301 && currentType <= 399)
+     {
+          currentAlarmText = "Unwetter";
+     }
+     else if (currentType >= 401 && currentType <= 499)
+     {
+          currentAlarmText = "Rettungsdienst";
+     }
+     else if (currentType >= 501 && currentType <= 599)
+     {
+          currentAlarmText = "THW";
+     }
+     else if (currentType >= 601 && currentType <= 699)
+     {
+          currentAlarmText = "Polizei";
+     }
+     else
+     {
+          currentAlarmText = F("UNKLAR");
+     }
+     return currentAlarmText;
+}
+
+int getAlarmCategory(unsigned int currentType)
+{
+     int currentAlarmText = 0;
+     if (currentType >= 101 && currentType <= 199)
+     {
+          currentAlarmText = 1;
+     }
+     else if (currentType >= 201 && currentType <= 299)
+     {
+          currentAlarmText = 2;
+     }
+     else if (currentType >= 301 && currentType <= 399)
+     {
+          currentAlarmText = 3;
+     }
+     else if (currentType >= 401 && currentType <= 499)
+     {
+          currentAlarmText = 4;
+     }
+     else if (currentType >= 501 && currentType <= 599)
+     {
+          currentAlarmText = 5;
+     }
+     else if (currentType >= 601 && currentType <= 699)
+     {
+          currentAlarmText = 6;
+     }
+     else
+     {
+     }
+     return currentAlarmText;
+}
