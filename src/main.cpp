@@ -300,7 +300,7 @@ void setup()
   mesh.stationManual(STATION_SSID, STATION_PASSWORD, STATION_PORT, STATION_IP);
   mesh.setHostname(HOSTNAME);
 
-  // Bridge node, should (in most cases) be a root node. See [the wiki](https://gitlab.com/painlessMesh/painlessMesh/wikis/Possible-challenges-in-mesh-formation) for some background
+  // Bridge node, should (in most cases) be a root node. See [the wiki](https://gitlab.com/c_Type_PainlessMesh/c_Type_PainlessMesh/wikis/c_Type_Possible-challenges-in-mesh-formation) for some background
   mesh.setRoot(true);
   // This node and all other nodes should ideally know the mesh contains a root, so call this on all nodes
   mesh.setContainsRoot(true);
@@ -311,181 +311,223 @@ void setup()
 
   server.onNotFound(notFound);
 
-  server.on("/D000.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_D000_96.jpg", "image/jpg"); });
- server.on("/D000.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_D001_96.jpg", "image/jpg"); });
- server.on("/F001.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F001_96.jpg", "image/jpg"); });
- server.on("/F002.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F002_96.jpg", "image/jpg"); });
- server.on("/F003.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F003_96.jpg", "image/jpg"); });
- server.on("/F004.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F004_96.jpg", "image/jpg"); });
- server.on("/F005.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F005_96.jpg", "image/jpg"); });
- server.on("/F006.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F006_96.jpg", "image/jpg"); });
- server.on("/F007.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F007_96.jpg", "image/jpg"); });
- server.on("/F008.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F008_96.jpg", "image/jpg"); });
- server.on("/F009.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F009_96.jpg", "image/jpg"); });
- server.on("/F010.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F010_96.jpg", "image/jpg"); });
- server.on("/F011.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F011_96.jpg", "image/jpg"); });
- server.on("/F012.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F012_96.jpg", "image/jpg"); });
- server.on("/F013.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F013_96.jpg", "image/jpg"); });
- server.on("/F014.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F014_96.jpg", "image/jpg"); });
- server.on("/F015.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F015_96.jpg", "image/jpg"); });
- server.on("/F016.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F016_96.jpg", "image/jpg"); });
- server.on("/F017.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F017_96.jpg", "image/jpg"); });
- server.on("/F018.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F018_96.jpg", "image/jpg"); });
- server.on("/F019.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F019_96.jpg", "image/jpg"); });
- server.on("/F020.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F020_96.jpg", "image/jpg"); });
- server.on("/F021.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F021_96.jpg", "image/jpg"); });
- server.on("/F022.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_F022_96.jpg", "image/jpg"); });
+ server.on("/jquery-3.7.0.min.js", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/jquery-3.7.0.min.js", "text/javascript"); });
+			
+ server.on("/c_Coat_000_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_000_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_001_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_002_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_003_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_003_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_004_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_004_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_005_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_005_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_006_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_006_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_007_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_007_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_008_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_008_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_009_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_009_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_010_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_010_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_011_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_011_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_012_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_012_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_013_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_013_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_014_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_014_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_015_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_015_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_016_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_016_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_017_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_017_24.jpg", "image/jpg"); });
+ server.on("/c_Coat_018_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Coat_018_24.jpg", "image/jpg"); });
+			
+ server.on("/c_Type_D000_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_D000_24.jpg", "image/jpg"); });
+ server.on("/c_Type_D001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_D001_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F001_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F002_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F003_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F003_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F004_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F004_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F005_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F005_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F006_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F006_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F007_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F007_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F008_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F008_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F009_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F009_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F010_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F010_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F011_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F011_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F012_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F012_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F013_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F013_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F014_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F014_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F015_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F015_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F016_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F016_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F017_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F017_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F018_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F018_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F019_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F019_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F020_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F020_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F021_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F021_24.jpg", "image/jpg"); });
+ server.on("/c_Type_F022_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_F022_24.jpg", "image/jpg"); });
 
- server.on("/H001.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H001_96.jpg", "image/jpg"); });
- server.on("/H002.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H002_96.jpg", "image/jpg"); });
- server.on("/H003.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H003_96.jpg", "image/jpg"); });
- server.on("/H004.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H004_96.jpg", "image/jpg"); });
- server.on("/H005.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H005_96.jpg", "image/jpg"); });
- server.on("/H006.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H006_96.jpg", "image/jpg"); });
- server.on("/H007.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H007_96.jpg", "image/jpg"); });
- server.on("/H008.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H008_96.jpg", "image/jpg"); });
- server.on("/H009.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H009_96.jpg", "image/jpg"); });
- server.on("/H010.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H010_96.jpg", "image/jpg"); });
- server.on("/H011.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H011_96.jpg", "image/jpg"); });
- server.on("/H012.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H012_96.jpg", "image/jpg"); });
- server.on("/H013.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H013_96.jpg", "image/jpg"); });
- server.on("/H014.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H014_96.jpg", "image/jpg"); });
- server.on("/H015.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H015_96.jpg", "image/jpg"); });
- server.on("/H016.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H016_96.jpg", "image/jpg"); });
- server.on("/H017.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H017_96.jpg", "image/jpg"); });
- server.on("/H018.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H018_96.jpg", "image/jpg"); });
- server.on("/H019.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H019_96.jpg", "image/jpg"); });
- server.on("/H020.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H020_96.jpg", "image/jpg"); });
-  server.on("/H021.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H021_96.jpg", "image/jpg"); });
- server.on("/H022.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_H022_96.jpg", "image/jpg"); });
+ server.on("/c_Type_H001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H001_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H002_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H003_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H003_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H004_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H004_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H005_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H005_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H006_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H006_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H007_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H007_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H008_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H008_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H009_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H009_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H010_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H010_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H011_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H011_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H012_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H012_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H013_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H013_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H014_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H014_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H015_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H015_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H016_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H016_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H017_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H017_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H018_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H018_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H019_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H019_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H020_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H020_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H021_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H021_24.jpg", "image/jpg"); });
+ server.on("/c_Type_H022_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_H022_24.jpg", "image/jpg"); });
 
- server.on("/P000.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_P000_96.jpg", "image/jpg"); });
- server.on("/P001.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_P001_96.jpg", "image/jpg"); });
- server.on("/P002.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_P002_96.jpg", "image/jpg"); });
- server.on("/P003.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_P003_96.jpg", "image/jpg"); });
- server.on("/P004.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_P004_96.jpg", "image/jpg"); });
- server.on("/P005.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_P005_96.jpg", "image/jpg"); });
- server.on("/P006.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_P006_96.jpg", "image/jpg"); });
+ server.on("/c_Type_P000_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_P000_24.jpg", "image/jpg"); });
+ server.on("/c_Type_P001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_P001_24.jpg", "image/jpg"); });
+ server.on("/c_Type_P002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_P002_24.jpg", "image/jpg"); });
+ server.on("/c_Type_P003_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_P003_24.jpg", "image/jpg"); });
+ server.on("/c_Type_P004_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_P004_24.jpg", "image/jpg"); });
+ server.on("/c_Type_P005_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_P005_24.jpg", "image/jpg"); });
+ server.on("/c_Type_P006_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_P006_24.jpg", "image/jpg"); });
 
- server.on("/R001.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R001_96.jpg", "image/jpg"); });
- server.on("/R002.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R002_96.jpg", "image/jpg"); });
- server.on("/R003.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R003_96.jpg", "image/jpg"); });
- server.on("/R004.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R004_96.jpg", "image/jpg"); });
- server.on("/R005.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R005_96.jpg", "image/jpg"); });
- server.on("/R006.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R006_96.jpg", "image/jpg"); });
- server.on("/R007.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R007_96.jpg", "image/jpg"); });
- server.on("/R008.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_R008_96.jpg", "image/jpg"); });
+ server.on("/c_Type_R001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R001_24.jpg", "image/jpg"); });
+ server.on("/c_Type_R002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R002_24.jpg", "image/jpg"); });
+ server.on("/c_Type_R003_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R003_24.jpg", "image/jpg"); });
+ server.on("/c_Type_R004_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R004_24.jpg", "image/jpg"); });
+ server.on("/c_Type_R005_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R005_24.jpg", "image/jpg"); });
+ server.on("/c_Type_R006_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R006_24.jpg", "image/jpg"); });
+ server.on("/c_Type_R007_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R007_24.jpg", "image/jpg"); });
+ server.on("/c_Type_R008_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_R008_24.jpg", "image/jpg"); });
 
- server.on("/T000.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T000_96.jpg", "image/jpg"); });
- server.on("/T001.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T001_96.jpg", "image/jpg"); });
- server.on("/T002.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T002_96.jpg", "image/jpg"); });
- server.on("/T003.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T003_96.jpg", "image/jpg"); });
- server.on("/T004.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T004_96.jpg", "image/jpg"); });
- server.on("/T005.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T005_96.jpg", "image/jpg"); });
- server.on("/T006.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T006_96.jpg", "image/jpg"); });
- server.on("/T007.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T007_96.jpg", "image/jpg"); });
- server.on("/T008.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T008_96.jpg", "image/jpg"); });
- server.on("/T009.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T009_96.jpg", "image/jpg"); });
- server.on("/T010.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T010_96.jpg", "image/jpg"); });
- server.on("/T011.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T011_96.jpg", "image/jpg"); });
- server.on("/T012.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T012_96.jpg", "image/jpg"); });
- server.on("/T013.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T013_96.jpg", "image/jpg"); });
- server.on("/T014.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T014_96.jpg", "image/jpg"); });
- server.on("/T015.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T015_96.jpg", "image/jpg"); });
- server.on("/T016.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T016_96.jpg", "image/jpg"); });
- server.on("/T017.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T017_96.jpg", "image/jpg"); });
- server.on("/T018.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T018_96.jpg", "image/jpg"); });
- server.on("/T019.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T019_96.jpg", "image/jpg"); });
- server.on("/T020.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T020_96.jpg", "image/jpg"); });
- server.on("/T021.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_T021_96.jpg", "image/jpg"); });
+ server.on("/c_Type_T000_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T000_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T001_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T002_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T003_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T003_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T004_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T004_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T005_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T005_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T006_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T006_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T007_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T007_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T008_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T008_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T009_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T009_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T010_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T010_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T011_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T011_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T012_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T012_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T013_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T013_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T014_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T014_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T015_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T015_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T016_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T016_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T017_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T017_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T018_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T018_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T019_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T019_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T020_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T020_24.jpg", "image/jpg"); });
+ server.on("/c_Type_T021_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_T021_24.jpg", "image/jpg"); });
 
- server.on("/U001.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_U001_96.jpg", "image/jpg"); });
- server.on("/U002.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/Type_U002_96.jpg", "image/jpg"); });
+ server.on("/c_Type_U001_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_U001_24.jpg", "image/jpg"); });
+ server.on("/c_Type_U002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/c_Type_U002_24.jpg", "image/jpg"); });
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(200, "text/html", index_html); });

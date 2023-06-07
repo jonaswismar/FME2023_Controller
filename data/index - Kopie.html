@@ -6468,7 +6468,7 @@ xhttp.send();
 <legend>Sonstiges</legend>
 <p><label class="field" for="currentComment">Kommentar:</label><input class="layout" type='text' id='currentComment' name='currentComment'/></p>
 </fieldset>
-<p><input class="button" type="submit" value="Alarmieren"><button type="button" class="button" onclick="readAlarmFromCard()">Karte Lesen</button><button type="button" class="button" onclick="saveAlarmToCard()">Karte Speichern</button></p>
+<p><input class="button" type="submit" value="Alarmieren"><button type="button" class="button" onclick="saveAlarmToCard()">Karte Speichern</button></p>
 </form>
 </div>
 <div id="EinstellungenD" class="tabcontent">
@@ -6659,18 +6659,14 @@ xhttp.send();
 <option value=115>Wißmar</option>
 </optgroup>
 </select><img class="layout" src="c_Coat_000_24.jpg" display="inline-block" name="placeImage"/></img></p>
-<p><label class="field" for="wakeTime">Weckzeit:</label>
-<input class="layout" type="time" id="wakeTime" name="wakeTime" value="00:00" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"/></p>
-<p style="display:none;"><label class="field" for="time">Uhrzeit:</label>
-<input class="layout" type="time" id="time" name="time" pattern="[0-2]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"/></p>
-<p><label class="field" for="isClosed">Privater Modus:</label>
+<p><label class="field" for="isClosed">"Closed" Modus:</label>
 <input class="layout" type="checkbox" id="isClosed" name="isClosed"/></p>
 <p style="display:none;"><label class="field" for="isDebug">Debug Modus:</label>
 <input class="layout" type="checkbox" id="isDebug" name="isDebug"/></p>
 <p style="display:none;"><label class="field" for="isGiessen">Gießen Modus:</label>
 <input class="layout" type="checkbox" id="isGiessen" name="isGiessen"/></p>
 </fieldset>
-<p><input class="button" type="submit" value="Speichern"><button class="button" type="button" onclick="transmitConfig()">Zurücksetzen</button><button class="button" type="button" onclick="transmitConfig()">Auf Melder übertragen</button></p>
+<p><input class="button" type="submit" value="Speichern"><button class="button" type="button" onclick="transmitConfig()">Auf Melder übertragen</button></p>
 </form>
 </div>
 <div id="SonstigesD" class="tabcontent">
