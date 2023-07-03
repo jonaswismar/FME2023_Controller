@@ -1,5 +1,9 @@
 #include <Arduino.h>
 
+#include "filesystem\functions.h"
+
+#include "variables.h"
+
 String getAlarmPLZText(unsigned int currentPLZ)
 {
      String currentAlarmText = "";
@@ -4717,4 +4721,52 @@ int getAlarmCategory(unsigned int currentType)
      {
      }
      return currentAlarmText;
+}
+
+String getCombinedAdress(int plz, int city, int street, int number, String addition)
+{
+  return getAlarmStreetText(street) + " " + String(number) + addition + ", " + getAlarmPLZText(plz) + " " + getAlarmCityText(city);
+}
+
+void resetAlarm()
+{
+  save_type = 0;
+  save_sub = 0;
+  save_plz = 0;
+  save_city = 0;
+  save_street = 0;
+  save_number = 0;
+  save_addition = "";
+  save_adress = "";
+  save_comment = "";
+  save_nodeIdString = "";
+}
+
+void saveAlarm(int type, int sub, int plz, int city, int street, int number, String addition, String adress, String comment, String nodeIdString)
+{
+  save_type = type;
+  save_sub = sub;
+  save_plz = plz;
+  save_city = city;
+  save_street = street;
+  save_number = number;
+  save_addition = addition;
+  if (adress.isEmpty())
+  {
+    adress = getCombinedAdress(plz, city, street, number, addition);
+  }
+  save_adress = adress;
+  save_comment = comment;
+  save_nodeIdString = nodeIdString;
+  writeAlarm();
+  resetAlarm();
+}
+
+void cleanCurrentAlarm()
+{
+  alarm_plz = 0;
+  alarm_city = 0;
+  alarm_street = 0;
+  alarm_number = 0;
+  alarm_addition = "";
 }

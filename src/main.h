@@ -4,31 +4,23 @@
 #include <ESPAsyncWebServer.h>
 #include <IPAddress.h>
 #include <MFRC522.h>
-#include <painlessMesh.h>
 #include <SPI.h>
 
 #include "alarm\functions.h"
 #include "filesystem\functions.h"
 #include "html\functions.h"
+#include "math\functions.h"
+#include "mesh\functions.h"
+#include "messages\functions.h"
+#include "rfid\functions.h"
 
 #include "variables.h"
-
-#define MESH_PREFIX "FMEMesh"
-#define MESH_PASSWORD "somethingSneaky"
-#define MESH_PORT 5555
-
-#define STATION_SSID "HighSecurity"
-#define STATION_PASSWORD "1337leet"
-#define STATION_PORT 5555
-
-#define HOSTNAME "controller"
 
 #define RFID_RST_PIN 5
 #define RFID_SS_PIN 53
 
 MFRC522 mfrc522(RFID_SS_PIN, RFID_RST_PIN);
 
-painlessMesh mesh;
 AsyncWebServer server(80);
 IPAddress myIP(0, 0, 0, 0);
 IPAddress myAPIP(0, 0, 0, 0);
@@ -76,24 +68,8 @@ String save_nodeIdString = "";
  */
 String rfid_lastUID = "";
 
-void cleanAlarm();
-
-void deleteAlarm();
-String getCombinedAdress(int, int, int, int, String);
-void saveAlarm(int, int, int, int, int, int, String, String, String, String);
-
-void readAndSendAlarm();
-
-void sendAlarm(int, int, int, int, int, int, String, String, String, String);
-
-void sendCommand(String, String);
 void notFound(AsyncWebServerRequest *);
 
-String getNodeTable();
-
-IPAddress getlocalIP();
-
-void receivedCallback(const uint32_t &, const String &);
 
 void setup();
 

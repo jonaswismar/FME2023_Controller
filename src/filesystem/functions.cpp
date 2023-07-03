@@ -211,6 +211,15 @@ void writeFile(const char *path, const char *message)
   file.close();
 }
 
+void deleteAlarm()
+{
+  String filename = "/" + rfid_lastUID + ".json";
+  int filename_len = filename.length() + 1;
+  char char_array[filename_len];
+  filename.toCharArray(char_array, filename_len);
+  deleteFile(char_array);
+}
+
 void writeAlarm()
 {
   fs::File settingsFS;
@@ -288,6 +297,127 @@ void readAlarm()
   String helper4 = settingsDoc["nodeIdString"];
   save_nodeIdString = helper4;
 
+  settingsFS.close();
+}
+
+void writeConfig()
+{
+  fs::File settingsFS;
+  if (spiffs_active == true)
+  {
+    settingsFS = SPIFFS.open("/configuration.json", FILE_WRITE);
+  }
+  else if (littlefs_active == true)
+  {
+    settingsFS = LittleFS.open("/configuration.json", FILE_WRITE);
+  }
+  else
+  {
+    settingsFS = FFat.open("/configuration.json", FILE_WRITE);
+  }
+  if (!settingsFS)
+  {
+    return;
+  }
+  StaticJsonDocument<1024> settingsDoc;
+
+  settingsDoc["time_page_1"] = time_page_1;             // 20000
+  settingsDoc["time_page_2"] = time_page_2;             // 20000
+  settingsDoc["time_page_3"] = time_page_3;             // 20000
+  settingsDoc["i18n"] = i18n;                           // "de"
+  settingsDoc["menu_sound_active"] = menu_sound_active; // true
+  settingsDoc["sound_digital"] = sound_digital;         // 16
+  settingsDoc["sound_analog"] = sound_analog;           // 52112
+  settingsDoc["sound_isDigital"] = sound_isDigital;     // true
+  settingsDoc["display_time"] = display_time;           // true
+  settingsDoc["display_landscape"] = display_landscape; // true
+  settingsDoc["display_theme"] = display_theme;         // "color"
+  settingsDoc["display_level"] = display_level;         // 100
+  settingsDoc["debug_mode"] = debug_mode;               // false
+  settingsDoc["giessen_mode"] = giessen_mode;           // true
+  settingsDoc["closed_mode"] = closed_mode;             // false
+  settingsDoc["cityId"] = cityId;                       // 91
+  settingsDoc["wlan_ssid"] = wlan_ssid;                 // "HighSecurity"
+  settingsDoc["wlan_password"] = wlan_password;         // "1337leet"
+  settingsDoc["wlan_port"] = wlan_port;                 // 80
+  settingsDoc["wlan_hostname"] = wlan_hostname;         // "controller"
+  settingsDoc["mesh_prefix"] = mesh_prefix;             // "FMEMesh"
+  settingsDoc["mesh_password"] = mesh_password;         // "somethingSneaky"
+  settingsDoc["mesh_port"] = mesh_port;                 // 5555
+  settingsDoc["mesh_channel"] = mesh_channel;           // 6
+  settingsDoc["mesh_containsRoot"] = mesh_containsRoot; // true
+  settingsDoc["mesh_isRoot"] = mesh_isRoot;             // true
+  settingsDoc["wake_hour"] = wake_hour;                 // 0
+  settingsDoc["wake_minute"] = wake_minute;             // 0
+  serializeJson(settingsDoc, settingsFS);
+  settingsFS.close();
+}
+
+void readConfig()
+{
+  fs::File settingsFS;
+  if (spiffs_active == true)
+  {
+    settingsFS = SPIFFS.open("/configuration.json", FILE_READ);
+  }
+  else if (littlefs_active == true)
+  {
+    settingsFS = LittleFS.open("/configuration.json", FILE_READ);
+  }
+  else
+  {
+    settingsFS = FFat.open("/configuration.json", FILE_READ);
+  }
+  if (!settingsFS)
+  {
+    return;
+  }
+  StaticJsonDocument<1024> settingsDoc;
+
+  DeserializationError error = deserializeJson(settingsDoc, settingsFS);
+
+  if (error)
+  {
+    // Serial.print("deserializeJson() failed: ");
+    // Serial.println(error.c_str());
+    return;
+  }
+
+  time_page_1 = settingsDoc["time_page_1"];             // 20000
+  time_page_2 = settingsDoc["time_page_2"];             // 20000
+  time_page_3 = settingsDoc["time_page_3"];             // 20000
+  String helper1 = settingsDoc["i18n"];                 // Helper
+  i18n = helper1;                                       // "de"
+  menu_sound_active = settingsDoc["menu_sound_active"]; // true
+  sound_digital = settingsDoc["sound_digital"];         // 16
+  sound_analog = settingsDoc["sound_analog"];           // 52112
+  sound_isDigital = settingsDoc["sound_isDigital"];     // true
+  display_time = settingsDoc["display_time"];           // true
+  display_landscape = settingsDoc["display_landscape"]; // true
+  String helper2 = settingsDoc["display_theme"];        // Helper
+  display_theme = helper2;                              // "color"
+  display_level = settingsDoc["display_level"];         // 100
+  debug_mode = settingsDoc["debug_mode"];               // false
+  giessen_mode = settingsDoc["giessen_mode"];           // true
+  closed_mode = settingsDoc["closed_mode"];             // false
+  cityId = settingsDoc["cityId"];                       // 91
+  String helper3 = settingsDoc["mesh_prefix"];          // "FMEMesh"
+  mesh_prefix = helper3;                                // Helper
+  String helper4 = settingsDoc["mesh_password"];        // "somethingSneaky"
+  mesh_password = helper4;                              // Helper
+  mesh_port = settingsDoc["mesh_port"];                 // 5555
+  mesh_channel = settingsDoc["mesh_channel"];           // 6
+  mesh_containsRoot = settingsDoc["mesh_containsRoot"]; // true
+  mesh_isRoot = settingsDoc["mesh_isRoot"];             // true
+  wake_hour = settingsDoc["wake_hour"];                 // 0
+  wake_minute = settingsDoc["wake_minute"];             // 0
+  String helper5 = settingsDoc["wlan_ssid"];            // "HighSecurity"
+  wlan_ssid = helper5;                                  // Helper
+  String helper6 = settingsDoc["wlan_password"];        // "1337leet"
+  wlan_password = helper6;                              // Helper
+  wlan_port = settingsDoc["wlan_port"];                 // 80
+  String helper7 = settingsDoc["wlan_hostname"];        // "controller"
+  wlan_hostname = helper7;                              // Helper
   settingsFS.close();
 }
 
