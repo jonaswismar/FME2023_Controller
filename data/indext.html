@@ -219,6 +219,73 @@
 				</tr>
 			</thead>
 			<tbody id="insertFMEList">
+				<!--Das ist nur für Testzwecke alles zwischen <tbody id="insertFMEList"> und </tbody> muss entfernt werden-->
+				<tr>
+					<td>123456789</td>
+					<td>
+						<img class="layout" src="img/c_Device_Controller.jpg" alt="Controller" title="Controller"
+							display="inline-block" name="statusImage" /></img>
+					</td>
+					<td>
+						<img class="layout" src="img/c_Status_On.jpg" alt="Online" title="Online" display="inline-block"
+							name="statusImage" /></img>
+						<img class="layout" src="img/c_BatCharge_24.jpg" alt="100%" title="100%" display="inline-block"
+							name="battImage" /></img>
+					</td>
+					<td>
+						<button type="button" onclick=resetFME(123456789)>Neustart</button>
+					</td>
+				</tr>
+				<tr>
+					<td>987654321</td>
+					<td>
+						<img class="layout" src="img/c_Device_Bridge.jpg" alt="Bridge" title="Bridge"
+							display="inline-block" name="statusImage" /></img>
+					</td>
+					<td>
+						<img class="layout" src="img/c_Status_On.jpg" alt="Online" title="Online" display="inline-block"
+							name="statusImage" /></img>
+						<img class="layout" src="img/c_Bat100_24.jpg" alt="100%" title="100%" display="inline-block"
+							name="battImage" /></img>
+					</td>
+					<td>
+						<button type="button" onclick=resetFME(987654321)>Neustart</button>
+					</td>
+				</tr>
+				<tr>
+					<td>987654321</td>
+					<td>
+						<img class="layout" src="img/c_Device_FME.jpg" alt="Client" title="Client"
+							display="inline-block" name="statusImage" /></img>
+					</td>
+					<td>
+						<img class="layout" src="img/c_Status_On.jpg" alt="Online" title="Online" display="inline-block"
+							name="statusImage" /></img>
+						<img class="layout" src="img/c_Bat100_24.jpg" alt="100%" title="100%" display="inline-block"
+							name="battImage" /></img>
+					</td>
+					<td>
+						<button type="button" onclick=resetFME(987654321)>Neustart</button>
+						<button type="button" onclick=sendSingle(987654321)>Alarmieren</button>
+					</td>
+				</tr>
+				<tr>
+					<td>987654321</td>
+					<td>
+						<img class="layout" src="img/c_Device_FME.jpg" alt="Client" title="Client"
+							display="inline-block" name="statusImage" /></img>
+					</td>
+					<td>
+						<img class="layout" src="img/c_Status_Off.jpg" alt="Offline" title="Offline"
+							display="inline-block" name="statusImage" /></img>
+						<img class="layout" src="img/c_Bat000_24.jpg" alt="0%" title="0%" display="inline-block"
+							name="battImage" /></img>
+					</td>
+					<td>
+						<button type="button" disabled="disabled" onclick=resetFME(987654321)>Neustart</button>
+						<button type="button" disabled="disabled" onclick=sendSingle(987654321)>Alarmieren</button>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 		<p>

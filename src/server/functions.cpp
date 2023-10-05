@@ -1,4 +1,5 @@
 #include <ESPAsyncWebServer.h>
+#include <AsyncTCP.h>
 
 #include "alarm\functions.h"
 #include "filesystem\functions.h"
@@ -11,11 +12,18 @@ AsyncWebServer server(80);
 
 void notFound(AsyncWebServerRequest *request)
 {
-  request->send(404, "text/plain", "Not found");
+  request->send(404, "text/plain", "Not Found");
 }
 
 void initServer()
 {
+
+  if (!SPIFFS.begin(true))
+  {
+    Serial.println("An Error has occurred while mounting SPIFFS");
+    return;
+  }
+
   server.onNotFound(notFound);
 
   server.on("/js/jquery.js", HTTP_GET, [](AsyncWebServerRequest *request)
@@ -243,8 +251,52 @@ void initServer()
   server.on("/img/c_Type_U002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Type_U002_24.jpg", "image/jpg"); });
 
+
+
+server.on("/img/Theme_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/Theme_24.jpg", "image/jpg"); });
+server.on("/img/ThemeBW_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/ThemeBW_24.jpg", "image/jpg"); });
+server.on("/img/ThemeOutline_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/ThemeOutline_24.jpg", "image/jpg"); });
+
+server.on("/img/c_LangDE_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_LangDE_24.jpg", "image/jpg"); });
+server.on("/img/c_LangEN_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_LangEN_24.jpg", "image/jpg"); });
+
+server.on("/img/c_Status_Off.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Status_Off.jpg", "image/jpg"); });
+server.on("/img/c_Status_On.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Status_On.jpg", "image/jpg"); });
+
+server.on("/img/c_Bat000_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Bat000_24.jpg", "image/jpg"); });
+server.on("/img/c_Bat010_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Bat010_24.jpg", "image/jpg"); });
+server.on("/img/c_Bat025_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Bat025_24.jpg", "image/jpg"); });
+server.on("/img/c_Bat050_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Bat050_24.jpg", "image/jpg"); });
+server.on("/img/c_Bat075_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Bat075_24.jpg", "image/jpg"); });
+server.on("/img/c_Bat100_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Bat100_24.jpg", "image/jpg"); });
+server.on("/img/c_BatCharge_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_BatCharge_24.jpg", "image/jpg"); });
+
+server.on("/img/c_Device_Bridge.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Device_Bridge.jpg", "image/jpg"); });
+server.on("/img/c_Device_Controller.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Device_Controller.jpg", "image/jpg"); });
+server.on("/img/c_Device_FME.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+            { request->send(SPIFFS, "/img/c_Device_FME.jpg", "image/jpg"); });
+
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
-            { request->send(SPIFFS, "/index.html", "text/html"); });
+            {
+              
+               request->send(SPIFFS, "/index.html", "text/html"); 
+               });
   server.on("/index.html", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/index.html", "text/html"); });
   server.on("/monitor.html", HTTP_GET, [](AsyncWebServerRequest *request)

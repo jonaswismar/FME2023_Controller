@@ -14,7 +14,7 @@
 #define STATION_SSID "HighSecurity"
 #define STATION_PASSWORD "1337leet"
 #define STATION_PORT 80
-uint8_t STATION_IP[4] = {192, 168, 1, 112};
+uint8_t STATION_IP[4] = {192, 168, 2, 112};
 
 #define HOSTNAME "controller"
 
@@ -37,14 +37,15 @@ void initMesh()
   mesh.init(MESH_PREFIX, MESH_PASSWORD, MESH_PORT, WIFI_AP_STA, 6);
   mesh.onReceive(&receivedCallback);
 
-  mesh.stationManual(STATION_SSID, STATION_PASSWORD, STATION_PORT, STATION_IP);
+  //mesh.stationManual(STATION_SSID, STATION_PASSWORD, STATION_PORT, STATION_IP);
+  mesh.stationManual(STATION_SSID, STATION_PASSWORD);
   mesh.setHostname(HOSTNAME);
 
   // Bridge node, should (in most cases) be a root node. See [the wiki](https://gitlab.com/c_Type_PainlessMesh/c_Type_PainlessMesh/wikis/c_Type_Possible-challenges-in-mesh-formation) for some background
   mesh.setRoot(true);
   // This node and all other nodes should ideally know the mesh contains a root, so call this on all nodes
   mesh.setContainsRoot(true);
-  mesh.initOTAReceive("otaServer");
+  //mesh.initOTAReceive("otaServer");
 
 }
 

@@ -87,28 +87,40 @@ ESP32Time rtc(daylightOffset_sec);
 void setup()
 {
   Serial.begin(115200);
+  Serial.println("Serial.begin");
+  Serial.println("My AP IP is " + myAPIP.toString());
+  Serial.println("My IP is " + myIP.toString());
 
+  Serial.println("SPI.begin");
   SPI.begin();
   mfrc522.PCD_Init();
 
+  Serial.println("initMesh");
   initMesh();
   myAPIP = getMeshAPIP();
-  // Serial.println("My AP IP is " + myAPIP.toString());
+  Serial.println("My AP IP is " + myAPIP.toString());
 
-  initServer();
+  Serial.println("initServer");
+  // initServer();
 
   struct tm timeinfo;
+  Serial.println("configTime");
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
   if (getLocalTime(&timeinfo))
   {
     rtc.setTimeStruct(timeinfo);
   }
+  Serial.println("My AP IP is " + myAPIP.toString());
+  Serial.println("My IP is " + myIP.toString());
+  Serial.println("finish");
 }
 
 void loop()
 {
+  // Serial.println("updateMesh");
   updateMesh();
 
+  // Serial.println("mfrc522");
   if (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial())
   {
     String newUID;
@@ -128,5 +140,8 @@ void loop()
   if (myIP != getMeshStationIP())
   {
     myIP = getMeshStationIP();
+    Serial.println("My IP is " + myIP.toString());
+    Serial.println("initServer");
+    initServer();
   }
 }
