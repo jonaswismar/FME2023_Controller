@@ -72,6 +72,7 @@ SimpleList<uint32_t> getMeshNodesIds(){
 
 void sendAlarm(int type, int sub, int plz, int city, int street, int number, String addition, String adress, String comment, String nodeIdString)
 {
+  Serial.println("Mesh Function called");
   if (!adress.endsWith(" "))
   {
     adress = adress + " ";
@@ -102,11 +103,13 @@ void sendAlarm(int type, int sub, int plz, int city, int street, int number, Str
   doc["number"] = number;
   doc["addition"] = addition;
 
-  if (adress.isEmpty())
+  Serial.println(adress);
+if (adress.isEmpty()||adress.equals("")||adress.equals(" "))
   {
     adress = getCombinedAdress(plz, city, street, number, addition);
   }
-
+Serial.println(adress);
+  
   doc["adress"] = adress;
   doc["comment"] = comment;
 

@@ -251,52 +251,47 @@ void initServer()
   server.on("/img/c_Type_U002_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Type_U002_24.jpg", "image/jpg"); });
 
-
-
-server.on("/img/Theme_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/Theme_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/Theme_24.jpg", "image/jpg"); });
-server.on("/img/ThemeBW_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/ThemeBW_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/ThemeBW_24.jpg", "image/jpg"); });
-server.on("/img/ThemeOutline_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/ThemeOutline_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/ThemeOutline_24.jpg", "image/jpg"); });
 
-server.on("/img/c_LangDE_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_LangDE_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_LangDE_24.jpg", "image/jpg"); });
-server.on("/img/c_LangEN_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_LangEN_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_LangEN_24.jpg", "image/jpg"); });
 
-server.on("/img/c_Status_Off.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Status_Off.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Status_Off.jpg", "image/jpg"); });
-server.on("/img/c_Status_On.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Status_On.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Status_On.jpg", "image/jpg"); });
 
-server.on("/img/c_Bat000_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Bat000_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Bat000_24.jpg", "image/jpg"); });
-server.on("/img/c_Bat010_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Bat010_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Bat010_24.jpg", "image/jpg"); });
-server.on("/img/c_Bat025_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Bat025_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Bat025_24.jpg", "image/jpg"); });
-server.on("/img/c_Bat050_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Bat050_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Bat050_24.jpg", "image/jpg"); });
-server.on("/img/c_Bat075_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Bat075_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Bat075_24.jpg", "image/jpg"); });
-server.on("/img/c_Bat100_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Bat100_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Bat100_24.jpg", "image/jpg"); });
-server.on("/img/c_BatCharge_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_BatCharge_24.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_BatCharge_24.jpg", "image/jpg"); });
 
-server.on("/img/c_Device_Bridge.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Device_Bridge.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Device_Bridge.jpg", "image/jpg"); });
-server.on("/img/c_Device_Controller.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Device_Controller.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Device_Controller.jpg", "image/jpg"); });
-server.on("/img/c_Device_FME.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
+  server.on("/img/c_Device_FME.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/img/c_Device_FME.jpg", "image/jpg"); });
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
-              
-               request->send(SPIFFS, "/index.html", "text/html"); 
-               });
+            { request->send(SPIFFS, "/index.html", "text/html"); });
   server.on("/index.html", HTTP_GET, [](AsyncWebServerRequest *request)
             { request->send(SPIFFS, "/index.html", "text/html"); });
   server.on("/monitor.html", HTTP_GET, [](AsyncWebServerRequest *request)
@@ -319,6 +314,7 @@ server.on("/img/c_Device_FME.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
 
   server.on("/sendAlarm", HTTP_GET, [](AsyncWebServerRequest *request)
             {
+    Serial.println("Server Function called");
     const char* PARAM_INPUT_1 = "currentType";
     const char* PARAM_INPUT_2 = "currentSub";
     const char* PARAM_INPUT_3 = "currentPLZ";
@@ -329,20 +325,62 @@ server.on("/img/c_Device_FME.jpg", HTTP_GET, [](AsyncWebServerRequest *request)
     const char* PARAM_INPUT_8 = "currentAddress";
     const char* PARAM_INPUT_9 = "currentComment";
     const char* PARAM_INPUT_10 = "nodeId";
-    if (request->hasParam(PARAM_INPUT_1)&&request->hasParam(PARAM_INPUT_2)&&request->hasParam(PARAM_INPUT_3)&&request->hasParam(PARAM_INPUT_4)&&request->hasParam(PARAM_INPUT_5)&&request->hasParam(PARAM_INPUT_6)&&request->hasParam(PARAM_INPUT_7)&&request->hasParam(PARAM_INPUT_8)&&request->hasParam(PARAM_INPUT_9)&&request->hasParam(PARAM_INPUT_10))
+    
+    Serial.println(request->hasParam(PARAM_INPUT_1));
+    Serial.println(request->hasParam(PARAM_INPUT_2));
+    Serial.println(request->hasParam(PARAM_INPUT_3));
+    Serial.println(request->hasParam(PARAM_INPUT_4));
+    Serial.println(request->hasParam(PARAM_INPUT_5));
+    Serial.println(request->hasParam(PARAM_INPUT_6));
+    Serial.println(request->hasParam(PARAM_INPUT_7));
+    Serial.println(request->hasParam(PARAM_INPUT_8));
+    Serial.println(request->hasParam(PARAM_INPUT_9));
+    Serial.println(request->hasParam(PARAM_INPUT_10));
+
+  if (request->hasParam(PARAM_INPUT_1)&&request->hasParam(PARAM_INPUT_2)&&request->hasParam(PARAM_INPUT_3)&&request->hasParam(PARAM_INPUT_4)&&request->hasParam(PARAM_INPUT_5)&&request->hasParam(PARAM_INPUT_6))
     {
+      Serial.println("Server Function Parameter");
       int currentType = request->getParam(PARAM_INPUT_1)->value().toInt();
       int currentSub = request->getParam(PARAM_INPUT_2)->value().toInt();
       int currentPLZ = request->getParam(PARAM_INPUT_3)->value().toInt();
       int currentCity = request->getParam(PARAM_INPUT_4)->value().toInt();
       int currentStreet = request->getParam(PARAM_INPUT_5)->value().toInt();
       int currentHouseNumber = request->getParam(PARAM_INPUT_6)->value().toInt();
-      String currentHouseAddition = request->getParam(PARAM_INPUT_7)->value();
-      String currentAddress = request->getParam(PARAM_INPUT_8)->value();
-      String currentComment = request->getParam(PARAM_INPUT_9)->value();
-      String currentNodeId = request->getParam(PARAM_INPUT_10)->value();
-     sendAlarm(currentType, currentSub, currentPLZ, currentCity, currentStreet, currentHouseNumber, currentHouseAddition, currentAddress, currentComment, currentNodeId);
-     request->send(200);
+Serial.println(currentType);
+      Serial.println(currentSub);
+      Serial.println(currentPLZ);
+      Serial.println(currentCity);
+      Serial.println(currentStreet);
+      Serial.println(currentHouseNumber);
+      
+      String currentHouseAddition = "";
+      String currentAddress = "";
+      String currentComment = "";
+      String currentNodeId = "";
+   
+      if(request->hasParam(PARAM_INPUT_7))
+      {
+        currentHouseAddition = request->getParam(PARAM_INPUT_7)->value();
+      Serial.println(currentHouseAddition);
+      }
+      if(request->hasParam(PARAM_INPUT_8))
+      {
+        currentAddress = request->getParam(PARAM_INPUT_8)->value();
+      Serial.println(currentAddress);
+      }
+      if(request->hasParam(PARAM_INPUT_9))
+      {
+        currentComment = request->getParam(PARAM_INPUT_9)->value();
+      Serial.println(currentComment);
+      }
+      if(request->hasParam(PARAM_INPUT_10))
+      {
+        currentNodeId = request->getParam(PARAM_INPUT_10)->value();
+      Serial.println(currentNodeId);
+      }
+      Serial.println("Calling Mesh Function");
+      sendAlarm(currentType, currentSub, currentPLZ, currentCity, currentStreet, currentHouseNumber, currentHouseAddition, currentAddress, currentComment, currentNodeId);
+      request->send(200);
     } });
 
   server.on("/saveAlarm", HTTP_GET, [](AsyncWebServerRequest *request)

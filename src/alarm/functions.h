@@ -10,6 +10,7 @@ String getAlarmStreetText(unsigned int);
 String getAlarmSubText(unsigned int);
 String getAlarmTypeText(unsigned int);
 String getAlarmCategoryText(unsigned int);
+String getCombinedAdress(int, int, int, int, String);
 int getAlarmCategory(unsigned int);
 String getCombinedAdress(int, int, int, int, String);
 void resetAlarm();

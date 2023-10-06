@@ -166,10 +166,14 @@
 			var currentCity = document.getElementById('currentCity').value;
 			var currentStreet = document.getElementById('currentStreet').value;
 			var currentHouseNumber = document.getElementById('currentHouseNumber').value;
-			var currentHouseAdddition = document.getElementById('currentHouseAdddition').value;
-			var currentAddress = document.getElementById('currentAddress').value;
-			var currentComment = document.getElementById('currentComment').value;
-			var link = 'http://controller/saveAlarm?currentType=' + currentType + 'currentSub=' + currentSub + 'currentPLZ=' + currentPLZ + 'currentCity=' + currentCity + 'currentStreet=' + currentStreet + 'currentHouseNumber=' + currentHouseNumber + 'currentHouseAddition=' + currentHouseAddition + '&currentAddress=' + currentAddress + '&currentComment=' + currentComment + '&nodeId=' + nodeId;
+			var currentHouseAddition = document.getElementById('currentHouseAddition').value;
+			var currentAddress = document.getElementById('currentPLZ').options[document.getElementById('currentPLZ').selectedIndex].text + " " + 
+			document.getElementById('currentCity').options[document.getElementById('currentCity').selectedIndex].text + ", " + 
+			document.getElementById('currentStreet').options[document.getElementById('currentStreet').selectedIndex].text + " " +
+			document.getElementById('currentHouseNumber').value + document.getElementById('currentHouseAddition').value;
+			alert(currentAddress);
+		var currentComment = document.getElementById('currentComment').value;
+			var link = 'http://controller/saveAlarm?currentType=' + currentType + '&currentSub=' + currentSub + '&currentPLZ=' + currentPLZ + '&currentCity=' + currentCity + '&currentStreet=' + currentStreet + '&currentHouseNumber=' + currentHouseNumber + '&currentHouseAddition=' + currentHouseAddition + '&currentAddress=' + currentAddress + '&currentComment=' + currentComment + '&nodeId=' + nodeId;
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function () {
 				if (this.readyState == 4 && this.status == 200) {
@@ -188,9 +192,13 @@
 			var currentStreet = document.getElementById('currentStreet').value;
 			var currentHouseNumber = document.getElementById('currentHouseNumber').value;
 			var currentHouseAdddition = document.getElementById('currentHouseAdddition').value;
-			var currentAddress = document.getElementById('currentAddress').value;
+			var currentAddress = document.getElementById('currentPLZ').options[document.getElementById('currentPLZ').selectedIndex].text + " " + 
+			document.getElementById('currentCity').options[document.getElementById('currentCity').selectedIndex].text + ", " + 
+			document.getElementById('currentStreet').options[document.getElementById('currentStreet').selectedIndex].text + " " +
+			document.getElementById('currentHouseNumber').value + document.getElementById('currentHouseAddition').value;
 			var currentComment = document.getElementById('currentComment').value;
-			var link = 'http://controller/sendAlarm?currentType=' + currentType + 'currentSub=' + currentSub + 'currentPLZ=' + currentPLZ + 'currentCity=' + currentCity + 'currentStreet=' + currentStreet + 'currentHouseNumber=' + currentHouseNumber + 'currentHouseAddition=' + currentHouseAddition + '&currentAddress=' + currentAddress + '&currentComment=' + currentComment + '&nodeId=' + nodeId;
+			window.alert(currentAddress);
+			var link = 'http://controller/sendAlarm?currentType=' + currentType + '&currentSub=' + currentSub + '&currentPLZ=' + currentPLZ + '&currentCity=' + currentCity + '&currentStreet=' + currentStreet + '&currentHouseNumber=' + currentHouseNumber + '&currentHouseAddition=' + currentHouseAddition + '&currentAddress=' + currentAddress + '&currentComment=' + currentComment + '&nodeId=' + nodeId;
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function () {
 				if (this.readyState == 4 && this.status == 200) {
@@ -485,8 +493,8 @@
 						max="999" value="1" /></input>
 				</p>
 				<p>
-					<label class="field" for="currentHouseAdddition">Zusatz:</label>
-					<input class="layout" type="text" id="currentHouseAdddition" name="currentHouseAdddition"
+					<label class="field" for="currentHouseAddition">Zusatz:</label>
+					<input class="layout" type="text" id="currentHouseAddition" name="currentHouseAddition"
 						pattern="[A-Za-z]{0,3}" /></input>
 				</p>
 				<p hidden>
